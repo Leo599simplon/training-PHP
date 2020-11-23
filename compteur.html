@@ -12,7 +12,37 @@
 	setInterval("augmenter()", 1000);
 </script>
 <body>
-	<p id="timer">0</p>
+	<p id="timer">0</p>	
+	<p id="demo">5</p>
+<button onclick="myTimerObj.start()">Start counter</button>
+<button onclick="myTimerObj.end()">Stop counter</button>
 </body>
+
+<script>
+var myTimerObj = (function(document){
+   
+   var myTimer;
+
+   function start() {
+     myTimer = setInterval(myClock, 1000);
+     var compteur = 5;
+
+     function myClock() {
+       document.getElementById("demo").innerHTML = --compteur;
+       if (compteur == 0) {
+         clearInterval(myTimer);
+         alert("Reached zero");
+       }
+     }
+   }
+   
+   function end() {
+       clearInterval(myTimer)
+   }
+
+   return {start:start, end:end};
+ })(document);
+
+</script>
 
 </html>
