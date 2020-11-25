@@ -54,4 +54,61 @@ if ($x >= 0 XOR $y >= 0) {
  <p><input type="submit" value="OK"></p>
 </form>
 
+<?php
+
+echo str_word_count("Bonjour Madame ");
+echo '</br>';
+echo strrev('bonjour madame');
+echo '</br>';
+echo strlen('Bonjour Madame');
+echo '</br>';
+$bonjour = 'Madame';
+switch($bonjour){
+    case "Madame":
+        echo "Bonjour Madame</br>";
+        case "Monsieur":
+            echo "Bonjour Monsieur</br>";
+            default:
+            echo "Rien du tout</br>";
+};
+echo '</br>';
+
+$b = 17;
+while ($b<35)
+{
+    echo "mon nombre augmente : $b </br>";
+    $b++;
+}
+
+$c = ["blanc", "rouge", "vert"];
+foreach ($c as $value) {
+    echo "$value<br>";
+    # code...
+}
+
+$d = array('bouteille','cannette',"verre");
+$longueurTableau = count($d);
+for ($i=0; $i < $longueurTableau; $i++) { 
+ echo $d[$i];
+ echo "</br>";
+}
+
+$alma = ['first','second','third', 'fourth'];
+$tailleTab = count($alma);
+foreach ($alma as $value) {
+    echo $tailleTab;
+};
+?>
+<html>
+<body>
+<form action='training.php' method='GET'>
+Bonjour: <input type='text' name="bonjour">
+</form>
+<p>Bonjour <?php echo $_GET['bonjour'] ; ?> </p>
+</body>
+</html>
+
+
+
+
 
