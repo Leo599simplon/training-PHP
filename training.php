@@ -109,6 +109,37 @@ Bonjour: <input type='text' name="bonjour">
 </html>
 
 
+<?php
+
+$fichier = fopen("test.txt","r") or die ("impossible d'ouvrir le fichier");
+while(!feof($fichier))
+{
+    echo fgetc($fichier)."</br>";
+}
+fclose($fichier);
+
+$nouveauFichier = fopen('canette.txt',"w");
+echo 'nouveau fichier canette.txt créé</br>';
+
+$newFile = fopen("test.txt","w") or die ("prout");
+$newText = "megaCanette\n";
+fwrite($newFile,$newText);
+$newText = "Jean-michel\n";
+fwrite($newFile,$newText);
+echo 'nouvel ajout de text dans test.txt</br>';
+fclose($newFile);
+
+$newFile = fopen("test.txt","w") or die ("prout");
+$newText = "chapeau\n";
+fwrite($newFile,$newText);
+$newText = "michel\n";
+fwrite($newFile,$newText);
+echo 'ecrasement des données dans test.txt';
+fclose($newFile);
+
+
+?>
+
 
 
 
