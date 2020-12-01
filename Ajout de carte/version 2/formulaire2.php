@@ -92,34 +92,84 @@ session_start();
 
 <?php 
 
-//input de la card
-$card_info = array(
-  'nom2' => $_POST['nom_produit2'], 'description2' => $_POST['description2'], 'image2' => $_POST['image2'], 'prix_initial2' => $_POST['prix_initial2'],
-  'aug_prix2' => $_POST['augmentation_prix2'], 'aug_duree2' => $_POST['augmentation_duree2'], 'prix_clic2' => $_POST['prix_clic2']);
+// 
+// if (!isset($_SESSION['card_infos']))
+// {
+// $_SESSION['card_infos'] = array();
+// }
 
-// stocker les infos du tableau
-$_SESSION['tab_info'] = $card_info;
+// $_SESSION['card_infos'][$card_infos] = array('nom2' => $_POST['nom_produit2'], 'description2' => $_POST['description2'], 'image2' => $_POST['image2'], 'prix_initial2' => $_POST['prix_initial2'],
+// 'augmentation_prix2' => $_POST['augmentation_prix2'], 'augmentation_duree2' => $_POST['augmentation_duree2'], 'prix_clic2' => $_POST['prix_clic2']);
 
-if (isset($_SESSION['tab_info']) and isset($_POST["form2"]))
+   
+  
+// $_SESSION['tab_info'] = $card_info;
+
+// if (isset($_SESSION['tab_info']) and isset($_POST["form2"]))
+
+// Autre tableau
+// $_SESSION['cardInfo'] = array();
+// $_SESSION['cardInfo'][$cardInfoName] = array('nom_produit2' => $nom_produit2, 'description2' => $description_2, 'image2' => $image2,'prix_initial2'
+// => $prix_initial2, 'augmentation_prix2' => $augmentation_prix2,'augmentation_duree2' =>$augmentation_duree2,'prix_clic2' => $prix_clic2);
+
+function new_tab()
+
 {
 
-  if ( $_SERVER['REQUEST_METHOD'] == "POST" and isset($_SESSION['tab_info']))
+if (isset($_POST['nom_produit2'],$_POST['description2'],$_POST['image2'],$_POST['prix_initial2'],$_POST['augmentation_prix2'],$_POST['augmentation_duree2'],$_POST['prix_clic2']))
 
-  {
+{
+$nomProduit = htmlspecialchars($_POST['nom_produit2']);
+$_SESSION['nom_produit2'] = $nomProduit;
+$description2 = htmlspecialchars($_POST['description2']);
+$_SESSION['description2'] = $description2;
+$image2 = htmlspecialchars($_POST['image2']);
+$_SESSION['image2'] = $image2;
+$prix_initial2 = htmlspecialchars($_POST['prix_initial2']);
+$_SESSION['nom_produit2'] = $prix_initial2;
+$augmentation_prix2 = htmlspecialchars($_POST['augmentation_prix2']);
+$_SESSION['augmentation_prix2'] = $augmentation_prix2;
+$prix_initial2 = htmlspecialchars($_POST['prix_initial2']);
+$_SESSION['prix_initial2'] = $prix_initial2;
+$$augmentation_duree2 = htmlspecialchars($_POST['augmentation_duree2']);
+$_SESSION['augmentation_duree2'] = $augmentation_duree2;
+$prix_clic2 = htmlspecialchars($_POST['prix_clic2']);
+$_SESSION['prix_clic2'] = $prix_clic2;
+
+$tableau_produit = array($nomProduit,$description2,$prix_initial2,$augmentation_prix2,$prix_initial2,$augmentation_duree2,$prix_clic2);
+$_SESSION['tableau_produit'] = $tableau_produit;
+
+}
+
+if ( $_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST["form2"]))
+{
+
+    array_push($_SESSION['tableau_produit'], new_tab());
+}
+}
+
+
+
+
+
+
+if ( $_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST["form2"]))
+{
+
     
    ?>             <div class="col d-flex justify-content-center my-5">
    <div class="card" style="width: 18rem;">
-       <h5 class="card-title text-center py-2 border-bottom"><?php echo $value['nom2']; ?></h5>
-       <div class="prix text-center text-danger"><?php echo $value['prix_initial2']; ?> €
+       <h5 class="card-title text-center py-2 border-bottom"><?php echo $nomProduit; ?></h5>
+       <div class="prix text-center text-danger"><?php echo $_SESSION['prix_initial2']; ?> €
        </div>
-       <img src="ressources/img/<?php echo $value['image2'] ?>" class="card-img-top border-bottom" alt="...">
+       <img src="<?php echo $_SESSION['image2'] ?>" class="card-img-top border-bottom" alt="...">
        <div class="description border-bottom">
-           <p class="descriptionDuProduit text-center"><?php echo $value['description2']; ?></p>
+           <p class="descriptionDuProduit text-center"><?php echo $_SESSION['description2']; ?></p>
 
        </div>
        <div class="card-body d-flex align-items-center">
            <p class="card-text">
-               Prix de l'enchère:<i class="infoPrix"> +<?php echo $value['aug_prix2']; ?>cts/clics</i>
+               Prix de l'enchère:<i class="infoPrix"> +<?php echo $_SESSION['augmentation_prix2']; ?>cts/clics</i>
            </p>
        </div>
        <div class="card-footer d-flex flex-column justify-content-around">
@@ -128,7 +178,7 @@ if (isset($_SESSION['tab_info']) and isset($_POST["form2"]))
 
   <?php    
   }
-    }
+    
 
 ?>
 
